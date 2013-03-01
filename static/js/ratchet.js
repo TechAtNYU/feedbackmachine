@@ -398,8 +398,6 @@
         swap.classList.remove('slide');
         swap.classList.remove(swapDirection);
         container.parentNode.removeChild(container);
-        console.log(container);
-        console.log('boom');
         complete && complete();
       }
     }
