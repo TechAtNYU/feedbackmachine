@@ -14,7 +14,7 @@ function serialize_form($form) {
 
 }
 
-function comment_submitted() {
+function comment_submitted () {
   $('#comment_content').val('').blur();
   var $alert = $('#alert');
   var $text = $('#alert-text');
@@ -23,7 +23,7 @@ function comment_submitted() {
   $alert.removeClass('hide');
 }
 
-function comment_error() {
+function comment_error () {
   $('#comment_content').blur();
   var $alert = $('#alert');
   var $text = $('#alert-text');
@@ -32,7 +32,7 @@ function comment_error() {
   $alert.removeClass('hide');
 }
 
-function post_comment(demo_id, content) {
+function post_comment (demo_id, content) {
   $.ajax({
     type: 'POST',
     url: '/json/demos/' + demo_id + '/comments/?format=json',
@@ -42,7 +42,7 @@ function post_comment(demo_id, content) {
   })
 }
 
-function create_comment(e) {
+function create_comment (e) {
   e.preventDefault();
 
   var $form = $('#comment_create'),
@@ -51,22 +51,22 @@ function create_comment(e) {
   post_comment(data.demo_id, data.content);
 }
 
-function listen_create_comment() {
+function listen_create_comment () {
   $('#comment_create').on('submit', create_comment);
   // $('#comment_submit').click(create_comment);
   $('#comment_submit').on('touchend', create_comment);
 }
 
-function update_current_demo_link(demo_id) {
+function update_current_demo_link (demo_id) {
   var $current_demo = $('#current_demo');
   var on_current_demo = (demo_id == page_data.demo_id);
-  $current_demo.attr('href', '/demo/' + demo_id + '/');
+  $current_demo.attr('href', '/demos/' + demo_id + '/');
   $current_demo.toggleClass('hide', on_current_demo);
 }
 
-function poll_current_demo() {
+function poll_current_demo () {
   update_current_demo_link(page_data.current_demo_id);
-  pages['/demo'].poller = setInterval(function() {
+  pages['/demos'].poller = setInterval(function() {
     var event_id = page_data.event_id;
     $.ajax({
       url: '/json/events/' + event_id + '/current_demo/?format=json',
@@ -78,13 +78,13 @@ function poll_current_demo() {
   }, 5000);
 }
 
-pages['/demo'] = {
-  init: function() {
+pages['/demos'] = {
+  init: function () {
     page_data = JSON.parse($('#page_data').text());
     listen_create_comment();
     poll_current_demo();
   },
-  cleanup: function() {
+  cleanup: function () {
     clearInterval(this.poller);
     $('#comment_create').off('submit');
     $('#comment_submit').off('touchend');

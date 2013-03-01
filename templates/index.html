@@ -3,7 +3,7 @@
 {% block content %}
 
 <header class='bar-title'>
-  <h1 class='title'>DemoDays Feedback Machine</h1>
+  <h1 class='title'>{{ event.title }}</h1>
 </header>
 
 <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
@@ -14,7 +14,10 @@
     </li>
     <li>
       <a href='{{ current_demo.get_absolute_url }}' data-transition='slide-in'>
-        <strong>{{ current_demo.presenter }}</strong>
+        <strong>
+          {{ current_demo.presenter }}
+          {% if current_demo.title %} - {{ current_demo.title }}{% endif %}
+        </strong>
         <span class='chevron'></span>
       </a>
     </li>
@@ -24,7 +27,10 @@
     {% for demo in demos %}
     <li>
       <a href='{{ demo.get_absolute_url }}' data-transition='slide-in'>
-        <strong>{{ demo.presenter }}</strong>
+        <strong>
+          {{ demo.presenter }}
+          {% if demo.title %} - {{ demo.title }}{% endif %}
+        </strong>
         <span class='chevron'></span>
       </a>
     </li>
