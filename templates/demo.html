@@ -28,7 +28,9 @@
       <h4 class='media-heading'>{{ demo.presenter }}</h4>
       <p>
         {{ demo.email }}<br />
+        {% if demo.twitter %}
         @<a href='http://twitter.com/{{ demo.twitter }}' data-ignore="push">{{ demo.twitter }}</a>
+        {% endif %}
       </p>
     </div>
   </div>

@@ -47,7 +47,7 @@ class Demo(models.Model):
         return ('app.views.demo', [self.id])
 
     def _get_gravatar_url(self, size):
-        default = 'http://placehold.it/64x64'
+        default = 'http://a3.twimg.com/sticky/default_profile_images/default_profile_4_bigger.png'
         url = 'http://www.gravatar.com/avatar/%s?%s' % (
             hashlib.md5(self.email.lower()).hexdigest(),
             urllib.urlencode({'d':default, 's':str(size)}))
