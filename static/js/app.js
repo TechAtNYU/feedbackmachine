@@ -9,8 +9,6 @@ function start () {
   current_page.init();
 }
 
-$(window).on('load', function () { new FingerBlast('body'); });
-
 $(window).on('push', start);
 
 $(start);
