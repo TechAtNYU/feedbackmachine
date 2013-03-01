@@ -16,7 +16,7 @@
   {
     "event_id": {{ event.id }},
     "demo_id": {{ demo.id }},
-    "current_demo_id": {{ current_demo.id }}
+    "current_demo_id": {% if current_demo %}{{ current_demo.id }}{% else %}null{% endif %}
   }
   </script>
 
