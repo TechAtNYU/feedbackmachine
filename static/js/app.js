@@ -1,7 +1,7 @@
 var pages = {},
     current_page = null;
 
-function start() {
+function start () {
   var pathname = window.location.pathname;
   var page = pathname.split('/').slice(0,2).join('/');
   if (current_page) current_page.cleanup();
