@@ -10,8 +10,9 @@ import json
 
 def current_demo(request, event_id):
     event = Event.objects.get(id=event_id)
+    current_demo_id = getattr(event.current_demo, 'id', None)
     current_demo_json = json.dumps({
-        'demo_id': event.current_demo.id
+        'demo_id': current_demo_id
     })
     return HttpResponse(current_demo_json)
 

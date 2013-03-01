@@ -16,19 +16,21 @@
   {
     "event_id": {{ event.id }},
     "demo_id": {{ demo.id }},
-    "current_demo_id": {{ current_demo.id }}
+    "current_demo_id": {% if current_demo %}{{ current_demo.id }}{% else %}null{% endif %}
   }
   </script>
 
   <div class='media content-padded'>
     <div class='pull-left'>
-      <img class='media-object' src='http://placehold.it/64x64' />
+      <img class='media-object' src='{{ demo.avatar }}' />
     </div>
     <div class='media-body'>
       <h4 class='media-heading'>{{ demo.presenter }}</h4>
       <p>
         {{ demo.email }}<br />
+        {% if demo.twitter %}
         @<a href='http://twitter.com/{{ demo.twitter }}' data-ignore="push">{{ demo.twitter }}</a>
+        {% endif %}
       </p>
     </div>
   </div>
