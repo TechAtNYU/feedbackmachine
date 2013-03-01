@@ -28,7 +28,7 @@
       <h4 class='media-heading'>{{ demo.presenter }}</h4>
       <p>
         {{ demo.email }}<br />
-        @<a href='http://twitter.com/{{ demo.twitter }}'>{{ demo.twitter }}</a>
+        @<a href='http://twitter.com/{{ demo.twitter }}' data-ignore="push">{{ demo.twitter }}</a>
       </p>
     </div>
   </div>
@@ -36,7 +36,7 @@
   <div class='content-padded'>
     <p class='demo-description'>
       {{ demo.description }}<br />
-      <a href="{{ demo.url }}">{{ demo.url }}</a>
+      <a href="{{ demo.url }}" data-ignore="push">{{ demo.url }}</a>
     </p>
   </div>
 
