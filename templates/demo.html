@@ -3,7 +3,7 @@
 {% block content %}
 <header class='bar-title'>
   <a class='button-prev' href="{% url 'index' %}" data-transition='slide-out'>All demos</a>
-  <h1 class='title'>{{ demo.title }}</h1>
+  <h1 class='title'>{{ demo.event.title }}</h1>
   <a class='button-next hide' href='{{ current_demo.get_absolute_url }}' data-transition='slide-in' id='current_demo'>
     Current Demo
   </a>
@@ -36,6 +36,7 @@
   </div>
 
   <div class='content-padded'>
+    <h1 class='title'>{{ demo.title }}</h1>
     <p class='demo-description'>
       {{ demo.description }}<br />
       <a href="{{ demo.url }}" data-ignore="push">{{ demo.url }}</a>
