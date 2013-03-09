@@ -187,6 +187,7 @@ INSTALLED_APPS = (
     'south',
     'django_admin_bootstrapped',
     'django.contrib.admin',
+    'gunicorn',
     'app',
     'compressor',
     # Uncomment the next line to enable admin documentation:
