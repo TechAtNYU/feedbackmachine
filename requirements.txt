@@ -1,9 +1,11 @@
-Django==1.4.3
-South==0.7.6
+Django==1.5
+boto==2.0
 django-admin-bootstrapped==0.3.2
-wsgiref==0.1.2
-django-tastypie==0.9.11
-gunicorn==0.17.2
+django-compressor==1.2
+django-storages==1.1.6
 dj-database-url==0.2.1
+gunicorn==0.17.2
 psycopg2==2.4.6
 requests==1.1.0
+South==0.7.6
+wsgiref==0.1.2

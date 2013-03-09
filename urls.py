@@ -4,16 +4,6 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from tastypie.api import Api
-from app.api import EventResource, DemoResource, CommentResource
-
-
-v1_api = Api(api_name='v1')
-v1_api.register(EventResource())
-v1_api.register(DemoResource())
-v1_api.register(CommentResource())
-
-
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'app.views.index', name='index'),
