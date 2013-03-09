@@ -138,7 +138,7 @@ AWS_QUERYSTRING_AUTH = False    # http://code.welldev.org/django-storages/issue/
 AWS_S3_SECURE_URLS = True
 AWS_PRELOAD_METADATA = True
 # This is needed to prevent django-storages from hitting S3 each and every time we get the url property of an image
-AWS_S3_CUSTOM_DOMAIN = 'shorty-industry-awards.s3.amazonaws.com'
+# AWS_S3_CUSTOM_DOMAIN = ''
 
 
 # Make this unique, and don't share it with anybody.
