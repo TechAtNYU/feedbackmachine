@@ -2,4 +2,6 @@ TODO
 
 make the admin interface better
 deploy to heroku
+set up s3 and compressor
+put s3 keys, and secret key in heroku environ settings
 

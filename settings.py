@@ -100,7 +100,12 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://feedbackmachine.s3-website-us-east-1.amazonaws.com/'
+
+# URL prefix for admin static files -- CSS, JavaScript and images.
+# Make sure to use a trailing slash.
+# Examples: "http://foo.com/static/admin/", "/static/admin/".
+ADMIN_MEDIA_PREFIX = 'http://feedbackmachine.s3-website-us-east-1.amazonaws.com/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -114,11 +119,33 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
+STATICFILES_STORAGE = 'utils.storage.CachedS3BotoStorage'
+
+
+# S3 Setup
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_HEADERS = {
+    'Cache-Control': 'max-age=86400',
+}
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', None)
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
+AWS_STORAGE_BUCKET_NAME = 'feedbackmachine'
+AWS_QUERYSTRING_AUTH = False    # http://code.welldev.org/django-storages/issue/51/please-improve-s3-storage-documentation
+AWS_S3_SECURE_URLS = True
+AWS_PRELOAD_METADATA = True
+# This is needed to prevent django-storages from hitting S3 each and every time we get the url property of an image
+AWS_S3_CUSTOM_DOMAIN = 'shorty-industry-awards.s3.amazonaws.com'
+
+
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '(pg^hlqx!j!uoh=#)e8v63+hldy)wlp=+rv92a48(ve61l)!+w'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    '(pg^hlqx!j!uoh=#)e8v63+hldy)wlp=+rv92a48(ve61l)!+w'
+)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -161,6 +188,7 @@ INSTALLED_APPS = (
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'app',
+    'compressor',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -193,6 +221,25 @@ LOGGING = {
         },
     }
 }
+
+
+#
+# Compressor settings
+# http://django_compressor.readthedocs.org/en/latest/remote-storages/
+#
+INSTALLED_APPS += ('compressor',)
+COMPRESS_ENABLED = SERVER_CONFIG == 'prod'
+COMPRESS_STORAGE = STATICFILES_STORAGE
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_OUTPUT_DIR = 'compressed'
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+)
+COMPRESS_JS_FILTERS = (
+    'compressor.filters.jsmin.JSMinFilter',
+)
+
 
 try:
     from local_settings import *
