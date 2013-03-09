@@ -2,10 +2,10 @@ from django.contrib import admin
 from app.models import Event, Demo, Comment
 
 class EventAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'venue', 'datetime', 'is_current')
 
 class DemoAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('presenter', 'email', 'title')
 
 class CommentAdmin(admin.ModelAdmin):
     pass

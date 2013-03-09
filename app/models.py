@@ -35,8 +35,8 @@ class Demo(models.Model):
     presenter = models.CharField(max_length=40, help_text='The presenter\'s name')
     email = models.EmailField()
     twitter = models.CharField(max_length=15, blank=True)
-    title = models.CharField(max_length=15, blank=True)
-    description = models.CharField(max_length=144, blank=True)
+    title = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=255, blank=True)
     url = models.URLField(blank=True)
 
     def __str__(self):
