@@ -100,12 +100,12 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static"
-STATIC_URL = 'http://feedbackmachine.s3-website-us-east-1.amazonaws.com/'
+STATIC_URL = 'https://s3.amazonaws.com/feedbackmachine/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = 'http://feedbackmachine.s3-website-us-east-1.amazonaws.com/admin/'
+ADMIN_MEDIA_PREFIX = 'https://s3.amazonaws.com/feedbackmachine/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
